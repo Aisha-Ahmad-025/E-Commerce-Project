@@ -4,8 +4,9 @@
   "description": "VELORA-backend",
   "license": "ISC",
   "author": "Aisha Ahmad",
-  "type": "commonjs",
+  "type": "module",
   "main": "index.js",
+
   "scripts": {
     "start": "node index.js",
     "dev" : "nodemon index.js"
