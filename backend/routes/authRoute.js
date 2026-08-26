@@ -6,7 +6,8 @@ const router = express.Router()
 
 
 // into the models we have a generate token function and here we are checking it via protect middleware
-//also thw admin can see all the user by using the admin middleware
+// also the admin can see all the user by using the admin middleware
 router.post('/register', registerUser)
 router.post('/login', loginUser)
 router.get('/users', protect, admin, getUsers)
+export default router;
