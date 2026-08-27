@@ -4,9 +4,9 @@ import dotenv from "dotenv";
 import connectDB from './config/db.js'
 import authRoute from './routes/authRoute.js'
 import productRoute from './routes/productRoute.js'
-import orderRoute from './routes/orderRoute.js'
-import paymentRoute from './routes/paymentRoute.js'
-import analyticRoute from './routes/analyticRoute.js'
+// import orderRoute from './routes/orderRoute.js'
+// import paymentRoute from './routes/paymentRoute.js'
+// import analyticRoute from './routes/analyticRoute.js'
 
 dotenv.config()
 connectDB()
@@ -23,10 +23,10 @@ app.get('/', (req, res) => {
 // routes
 app.use('/api/auth', authRoute)
 app.use('/api/products', productRoute)
-app.use('/api/orders', orderRoute)
-app.use('/api/payment', paymentRoute)
-// analytics route is for the admin to manage all the things
-app.use('/api/analytics', analyticRoute)
+// app.use('/api/orders', orderRoute)
+// app.use('/api/payment', paymentRoute)
+// // analytics route is for the admin to manage all the things
+// app.use('/api/analytics', analyticRoute)
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {

@@ -11,3 +11,6 @@ const connectDB = async () => {
 }
 
 export default connectDB
+
+
+// https://github.com/ShivaMani02/shopnest-ecom-MERN
