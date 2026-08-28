@@ -6,6 +6,8 @@ const orderSchema = new mongoose.Schema({
         ref: 'User',
         required: true
     },
+
+    // jo user nay products/items order kiye ha un ki detail
     items: [
         {
             productId: {
@@ -45,4 +47,4 @@ const orderSchema = new mongoose.Schema({
 }, { timestamps: true });
 
 
-export const order = mongoose.model("orders", orderSchema);
+export const Order = mongoose.model("Orders", orderSchema);

@@ -1,9 +1,9 @@
-import { product } from "../models/product.model.js";
+import { Product } from "../models/product.model.js";
 import cloudinary from '../config/cloudinary.js'
 
 const getProducts = async (req, res) => {
   try {
-    const products = await product.find({});
+    const products = await Product.find({});
     res.json(products);
   } catch (error) {
     res.status(500).json({ message: error.message });
@@ -12,7 +12,7 @@ const getProducts = async (req, res) => {
 
 const getProductById = async (req, res) => {
   try {
-    const product = await product.findById(req.params.id);
+    const product = await Product.findById(req.params.id);
     if (product) {
       res.json(product);
     } else {
@@ -29,10 +29,9 @@ const createProduct = async (req, res) => {
     let imageUrl = '';
     if (req.file) {
       const result = await cloudinary.uploader.upload(req.file.path);
-      console.log(result)
       imageUrl = result.secure_url;
     }
-    const product = new product({
+    const product = new Product({
       name, 
       description, 
       price, 
@@ -50,7 +49,7 @@ const createProduct = async (req, res) => {
 const updateProduct = async (req, res) => {
   try {
     const { name, description, price, category, stock } = req.body;
-    const product = await product.findById(req.params.id);
+    const product = await Product.findById(req.params.id);
     if (product) {
       product.name = name || product.name;
       product.description = description || product.description;
@@ -74,7 +73,7 @@ const updateProduct = async (req, res) => {
 
 const deleteProduct = async (req, res) => {
   try {
-    const product = await product.findById(req.params.id);
+    const product = await Product.findById(req.params.id);
     if (product) {
       // or either we can use the remove() to delete the product
       await product.deleteOne();
