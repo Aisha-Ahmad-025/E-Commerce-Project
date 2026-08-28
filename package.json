@@ -1,0 +1,27 @@
+{
+  "name": "e-commerace-project",
+  "version": "1.0.0",
+  "description": "",
+  "homepage": "https://github.com/Aisha-Ahmad-025/E-Commerce-Project#readme",
+  "bugs": {
+    "url": "https://github.com/Aisha-Ahmad-025/E-Commerce-Project/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Aisha-Ahmad-025/E-Commerce-Project.git"
+  },
+  "license": "ISC",
+  "author": "Aisha Ahmad",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+  "setup": "cd backend && npm install && cd ../frontend && npm install",
+  "dev:server": "cd backend && npm run dev",
+  "dev:client": "cd frontend && npm run dev",
+  "dev": "concurrently \"npm run dev:server\" \"npm run dev:client\"",
+  "build": "cd frontend && npm run build"
+},
+  "dependencies": {
+    "concurrently": "^10.0.5"
+  }
+}
