@@ -8,7 +8,7 @@ const createOrder = async (req, res) => {
             return res.status(400).json({ message: "INVALID ORDER DATA" })
         } else {
             const order = new Order({
-                user: req.user._id,
+                userId: req.user._id,
                 items,
                 totalAmount,
                 address,
@@ -18,7 +18,7 @@ const createOrder = async (req, res) => {
         }
         const message = `hello done order`
         await sendEmail(req.user.email, "Order Created", message)
-        req.status(201).json({ message: 'order creates successfully' })
+        res.status(201).json({ message: 'order created successfully', order: createOrder })
     } catch (error) {
         res.status(500).json({ message: 'server error' })
     }
@@ -27,41 +27,46 @@ const createOrder = async (req, res) => {
 
 const getMyOrders = async (req, res) => {
     try {
-        const orders = await Order.find({ user: req.user._id }).populate('items.productId', 'name price')
+        const orders = await Order.find({ userId: req.user._id }).populate('items.productId', 'name price')
         res.json(orders)
     } catch (error) {
         res.status(500).json({ message: 'error while fatching the orders', error })
     }
 }
 
-// this if for admin
-const getOrders = async(req,res)=>{
-     try {
-        const orders = await Order.find({}).populate('userId', 'id name')
-           res.json(orders)
-     } catch (error) {
-        
-     }
-}
+const getOrders = async (req, res) => {
+    try {
+        const orders = await Order.find({})
+            .populate('userId', 'id name');
+
+        res.json(orders);
+
+    } catch (error) {
+        res.status(500).json({
+            message: 'Error while fetching orders',
+            error: error.message
+        });
+    }
+};
 
 // this is also for the admin
-const updateOrderStatus =async (req,res)=>{
-try {
-    const {status}= req.status
-    const order = await Order.findById(req.parms.id)
-    if(order){
-        order.status=status
-        await order.save()
-        res.json({message:'Order ststus updated', order})
-    }else{
-        res.status(404).json({message:"oder not found"})
+const updateOrderStatus = async (req, res) => {
+    try {
+        const { status } = req.body
+        const order = await Order.findById(req.params.id)
+        if (order) {
+            order.status = status
+            await order.save()
+            res.json({ message: 'Order ststus updated', order })
+        } else {
+            res.status(404).json({ message: "oder not found" })
+        }
+    } catch (error) {
+        res.status(500).json({ message: 'Error while updating the status', error })
     }
-} catch (error) {
-    res.ststus(500).json({message:'Error while updating the status',error})
-}
 }
 
-export{
+export {
     createOrder,
     updateOrderStatus,
     getOrders,
