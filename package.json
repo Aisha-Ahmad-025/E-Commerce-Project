@@ -15,13 +15,14 @@
   "type": "module",
   "main": "index.js",
   "scripts": {
-  "setup": "cd backend && npm install && cd ../frontend && npm install",
-  "dev:server": "cd backend && npm run dev",
-  "dev:client": "cd frontend && npm run dev",
-  "dev": "concurrently \"npm run dev:server\" \"npm run dev:client\"",
-  "build": "cd frontend && npm run build"
-},
+    "setup": "cd backend && npm install && cd ../frontend && npm install",
+    "dev:server": "cd backend && npm run dev",
+    "dev:client": "cd frontend && npm run dev",
+    "dev": "concurrently \"npm run dev:server\" \"npm run dev:client\"",
+    "build": "cd frontend && npm run build"
+  },
   "dependencies": {
-    "concurrently": "^10.0.5"
+    "concurrently": "^10.0.5",
+    "react-redux": "^9.3.0"
   }
 }
