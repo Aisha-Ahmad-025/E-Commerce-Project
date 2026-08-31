@@ -20,7 +20,7 @@ const Navbar = () => {
       <div className="navbar-brand">
         <Link to="/">
           <img
-            src="../public/mall.png"
+            src="../public/img.png"
             alt="ShopNest"
             style={{
               height: "36px",

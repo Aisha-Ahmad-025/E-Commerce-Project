@@ -2,23 +2,22 @@ import { useEffect, useState } from "react";
 import ProductCard from "../components/ProductCard.jsx";
 
 const Home = () => {
-
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
 
   const fetchProducts = async () => {
-      try {
-        const res = await fetch("/api/products");
-        const data = await res.json();
-        setProducts(data.slice(0, 13)); // Featured products
-      } catch (error) {
-        console.log(error);
-      } finally {
-        setLoading(false);
-      }
-    };
+    try {
+      const res = await fetch("/api/products");
+      const data = await res.json();
+      setProducts(data.slice(0, 13)); // Featured products
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setLoading(false);
+    }
+  };
 
-  useEffect (() => {
+  useEffect(() => {
     fetchProducts();
   }, []);
 

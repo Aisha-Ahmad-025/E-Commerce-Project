@@ -14,7 +14,7 @@ const ProductCard = ({ product }) => {
         price: product.price,
         imageUrl: product.imageUrl,
         qty: 1,
-      })
+      }),
     );
     alert("Added to cart!");
   };
